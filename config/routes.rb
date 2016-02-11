@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'lolly/index'
   post 'lolly/dictList'
-  get 'lolly/dictList'
   post 'lolly/dictUrl'
   post 'lolly/search'
 

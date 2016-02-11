@@ -16,8 +16,10 @@ $(function() {
     var $dict = $('#dict');
     $lang.change(function() {
         $.post("/lolly/dictList", $('form').serialize(), function(response) {
-            //$dict.empty();
-            //$dict.html(response);
+            $dict.empty();
+            $.each(response, function(index, dict) {
+                $dict.append($('<option/>', {text: dict.DICTNAME}));
+            });
         });
     });
     $lang.change();
@@ -34,7 +36,7 @@ $(function() {
             success: function(response) {
                 $('#wordError').empty();
                 var word = $('#word').val();
-                var url = response.replace('{0}', encodeURIComponent(word));
+                var url = response.url.replace('{0}', encodeURIComponent(word));
                 $('#dictframe').attr('src', url);
             },
             error: function(response) {
